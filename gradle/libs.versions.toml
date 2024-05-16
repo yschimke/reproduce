@@ -1,0 +1,36 @@
+[versions]
+agp = "8.4.0"
+junitKtx = "1.1.5"
+kotlin = "1.9.23"
+coreKtx = "1.13.1"
+junit = "4.13.2"
+junitVersion = "1.1.5"
+espressoCore = "3.5.1"
+lifecycleRuntimeKtx = "2.8.0"
+activityCompose = "1.9.0"
+materialIconsExtended = "1.7.0-beta01"
+robolectric = "4.12.1"
+roborazzi = "1.13.0"
+runner = "1.5.2"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-junit-ktx = { module = "androidx.test.ext:junit-ktx", version.ref = "junitKtx" }
+androidx-material = { module = "androidx.compose.material:material", version.ref = "materialIconsExtended" }
+androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }
+androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-ui = { group = "androidx.compose.ui", name = "ui", version = "1.7.0-beta01" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics", version = "1.7.0-beta01" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version = "1.7.0-beta01" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3", version = "1.2.1" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
+roborazzi = { module = "io.github.takahirom.roborazzi:roborazzi", version.ref = "roborazzi" }
+roborazzi-compose = { module = "io.github.takahirom.roborazzi:roborazzi-compose", version.ref = "roborazzi" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }

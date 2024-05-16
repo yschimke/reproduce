@@ -1,0 +1,29 @@
+name: Fixups
+
+on:
+  workflow_dispatch:
+
+jobs:
+  fixes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+
+    steps:
+      - name: set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: 17
+
+      - name: Repair screenshots
+        uses: gradle/gradle-build-action@v3
+        with:
+          arguments: verifyAndRecordRoborazziDebug
+
+      - name: Push new screenshots if available
+        uses: stefanzweifel/git-auto-commit-action@v5
+        if: ${{ always() }}
+        with:
+          file_pattern: '**/*.png'
+          disable_globbing: true
+          commit_message: "🤖 Updates screenshots"
