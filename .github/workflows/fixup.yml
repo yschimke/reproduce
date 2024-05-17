@@ -1,0 +1,16 @@
+name: Fixups
+
+on:
+  workflow_dispatch:
+
+jobs:
+  fixes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+
+    steps:
+      - name: set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: 17
