@@ -79,4 +79,12 @@ class SeekToScreenshotTests {
             }
         }
     }
+
+    companion object {
+        internal const val USE_HARDWARE_RENDERER_NATIVE_ENV = "robolectric.screenshot.hwrdr.native"
+
+        init {
+            System.setProperty(USE_HARDWARE_RENDERER_NATIVE_ENV, "true")
+        }
+    }
 }
