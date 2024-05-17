@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.graphics.HardwareRendererCompat
 import com.github.takahirom.roborazzi.RobolectricDeviceQualifiers
 import com.github.takahirom.roborazzi.captureRoboImage
 import org.junit.Test
@@ -85,6 +86,7 @@ class SeekToScreenshotTests {
 
         init {
             System.setProperty(USE_HARDWARE_RENDERER_NATIVE_ENV, "true")
+            HardwareRendererCompat.setDrawingEnabled(true)
         }
     }
 }
