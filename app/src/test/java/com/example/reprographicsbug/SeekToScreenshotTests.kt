@@ -16,7 +16,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.graphics.HardwareRendererCompat
 import com.github.takahirom.roborazzi.RobolectricDeviceQualifiers
 import com.github.takahirom.roborazzi.captureRoboImage
 import org.junit.Test
@@ -26,7 +25,7 @@ import org.robolectric.annotation.GraphicsMode
 
 @Config(
     sdk = [33],
-    qualifiers = RobolectricDeviceQualifiers.WearOSLargeRound,
+    qualifiers = RobolectricDeviceQualifiers.WearOSSmallRound,
 )
 @RunWith(AndroidJUnit4::class)
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
@@ -82,11 +81,10 @@ class SeekToScreenshotTests {
     }
 
     companion object {
-        internal const val USE_HARDWARE_RENDERER_NATIVE_ENV = "robolectric.screenshot.hwrdr.native"
+        internal const val PIXEL_COPY_RENDER_MODE = "robolectric.pixelCopyRenderMode"
 
         init {
-            System.setProperty(USE_HARDWARE_RENDERER_NATIVE_ENV, "true")
-            HardwareRendererCompat.setDrawingEnabled(true)
+//            System.setProperty(PIXEL_COPY_RENDER_MODE, "hardware")
         }
     }
 }

@@ -4,13 +4,11 @@ junitKtx = "1.1.5"
 kotlin = "1.9.23"
 coreKtx = "1.13.1"
 junit = "4.13.2"
-junitVersion = "1.1.5"
-espressoCore = "3.5.1"
 lifecycleRuntimeKtx = "2.8.0"
 activityCompose = "1.9.0"
 materialIconsExtended = "1.7.0-beta01"
-robolectric = "4.12.1"
-roborazzi = "1.13.0"
+robolectric = "4.12.2"
+roborazzi = "1.16.1"
 runner = "1.5.2"
 
 [libraries]
@@ -25,7 +23,6 @@ androidx-activity-compose = { group = "androidx.activity", name = "activity-comp
 androidx-ui = { group = "androidx.compose.ui", name = "ui", version = "1.7.0-beta01" }
 androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics", version = "1.7.0-beta01" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version = "1.7.0-beta01" }
-androidx-material3 = { group = "androidx.compose.material3", name = "material3", version = "1.2.1" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 roborazzi = { module = "io.github.takahirom.roborazzi:roborazzi", version.ref = "roborazzi" }
 roborazzi-compose = { module = "io.github.takahirom.roborazzi:roborazzi-compose", version.ref = "roborazzi" }
