@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalOkHttpApi::class, ExperimentalOkHttpApi::class)
+
 package com.example.okhttpexosample
 
 import android.content.Context
@@ -14,14 +16,33 @@ import androidx.media3.datasource.okhttp.OkHttpDataSource
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
 import com.example.okhttpexosample.databinding.ActivityMainBinding
+import okhttp3.ConnectionPool
+import okhttp3.ExperimentalOkHttpApi
 import okhttp3.OkHttpClient
 import okhttp3.Protocol
+import okhttp3.logging.LoggingEventListener
 import org.chromium.net.CronetEngine
 import java.util.concurrent.Executors
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    val okHttpClient by lazy {
+        OkHttpDebugLogging.enableHttp2()
+        OkHttpDebugLogging.enable(Http2FlowControlConnectionListener::class.java.name)
+        OkHttpDebugLogging.enable(LoggingEventListener::class.java.name)
+
+        OkHttpClient.Builder()
+            .connectionPool(ConnectionPool(connectionListener = Http2FlowControlConnectionListener()))
+            .eventListener(com.example.okhttpexosample.LoggingEventListener)
+            .build()
+    }
+
+    val cronetEngine by lazy {
+        CronetEngine.Builder(applicationContext)
+            .build()
+    }
 
     @UnstableApi
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +70,8 @@ class MainActivity : AppCompatActivity() {
         binding.okhttpHttp2Button.setOnClickListener {
             releasePlayer()
 
-            val okHttpClient = OkHttpClient.Builder()
+            val okHttpClient = this.okHttpClient.newBuilder()
+                .protocols(listOf(Protocol.HTTP_2, Protocol.HTTP_1_1))
                 .build()
             val httpDataSource = OkHttpDataSource.Factory(okHttpClient)
             binding.playerControlView.player = buildPlayer(httpDataSource)
@@ -60,7 +82,7 @@ class MainActivity : AppCompatActivity() {
         binding.okhttpHttp1Button.setOnClickListener {
             releasePlayer()
 
-            val okHttpClient = OkHttpClient.Builder()
+            val okHttpClient = this.okHttpClient.newBuilder()
                 .protocols(listOf(Protocol.HTTP_1_1))
                 .build()
             val httpDataSource = OkHttpDataSource.Factory(okHttpClient)
@@ -72,8 +94,6 @@ class MainActivity : AppCompatActivity() {
         binding.cronetHttp2Button.setOnClickListener {
             releasePlayer()
 
-            val cronetEngine = CronetEngine.Builder(applicationContext)
-                .build()
             val httpDataSource =
                 CronetDataSource.Factory(cronetEngine, Executors.newSingleThreadExecutor())
             binding.playerControlView.player = buildPlayer(httpDataSource)

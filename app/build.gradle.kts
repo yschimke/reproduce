@@ -40,9 +40,11 @@ android {
 
 dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.11.0")
+    implementation("com.google.android.material:material:1.12.0")
 
-    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.14")
+    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.14")
+    implementation("com.squareup.okhttp3:okhttp-android:5.0.0-alpha.14")
 
     val media3Version = "1.3.1"
     implementation("androidx.media3:media3-ui:$media3Version")
